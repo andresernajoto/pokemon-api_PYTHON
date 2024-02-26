@@ -2,12 +2,29 @@ import os
 import requests
 
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 from os.path import join, dirname
 
-app = FastAPI()
+app = FastAPI(title='Pokemon API')
 dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
+
+origins = [
+    "http://localhost",
+    "http://localhost:8080",
+    "http://localhost:3000",
+    "http://localhost:8000",
+    "http://localhost:5000",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 base_url = os.environ.get('BASE_URL')
 
