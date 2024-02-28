@@ -31,7 +31,8 @@ base_url = os.environ.get('BASE_URL')
 @app.get('/pokemon/get-all')
 def get_all():
     try:
-        response = requests.get(base_url)
+        pokemon_route = base_url + 'pokemon/'
+        response = requests.get(pokemon_route)
 
         if response.status == 200:
             return response.json()
@@ -41,7 +42,8 @@ def get_all():
 @app.get('/pokemon/get-pokemon')
 def get_pokemon(pokemon: str):
     try:
-        response = requests.get(base_url, pokemon)
+        pokemon_route = base_url + 'pokemon/' + pokemon.strip()
+        response = requests.get(pokemon_route)
 
         if response.status_code == 200:
             return response.json()
