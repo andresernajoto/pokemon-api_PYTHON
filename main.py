@@ -32,10 +32,10 @@ base_url = os.environ.get('BASE_URL')
 def get_all():
     try:
         pokemon_route = base_url + 'pokemon/'
+
         response = requests.get(pokemon_route)
 
-        if response.status == 200:
-            return response.json()
+        return response.json()
     except:
         raise HTTPException(status_code=response.status_code, detail=response.text)
 
@@ -43,10 +43,9 @@ def get_all():
 def get_pokemon(pokemon: str):
     try:
         pokemon_route = base_url + 'pokemon/' + pokemon.strip()
-        response = requests.get(pokemon_route)
 
-        if response.status_code == 200:
-            return response.json()
+        response = requests.get(pokemon_route)
         
+        return response.json()
     except:
         raise HTTPException(status_code=response.status_code, detail=response.text)
