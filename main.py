@@ -37,7 +37,7 @@ def get_all():
 
         return response.json()
     except:
-        raise HTTPException(status_code=response.status_code, detail=response.text)
+        raise HTTPException(status_code=500, detail='Erro inesperado.')
 
 @app.get('/pokemon/get-pokemon')
 def get_pokemon(pokemon: str):
@@ -48,4 +48,4 @@ def get_pokemon(pokemon: str):
         
         return response.json()
     except:
-        raise HTTPException(status_code=response.status_code, detail=response.text)
+        raise HTTPException(status_code=500, detail='Erro inesperado.')
